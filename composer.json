@@ -1,0 +1,16 @@
+{
+    "name": "d_qurbonboyev/phpmvc-framework",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dilmurod"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
