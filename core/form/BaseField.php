@@ -4,7 +4,7 @@ namespace app\core\form;
 
 use app\core\Model;
 
-class Field
+abstract class BaseField
 {
     public Model $model;
     public string $attribute;
@@ -19,6 +19,7 @@ class Field
         $this->attribute = $attribute;
     }
 
+    abstract public function renderInput(): string;
 
     public function __toString()
     {
@@ -26,16 +27,14 @@ class Field
         return sprintf('
               <div class="col mb-3">
                 <label class="form-label">%s</label>
-                <input type="text" name="%s" value="%s" class="form-control %s"/>
+                %s
                 <div class="invalid-feedback">
                     %s
                 </div>
               </div>
         ',
-            $this->attribute,
-            $this->attribute,
-            $this->model->{$this->attribute},
-            $this->model->hasError($this->attribute) ? 'is-invalid' : '',
+            $this->model->getLabel($this->attribute),
+            $this->renderInput(),
             $this->model->getFirstError($this->attribute)
         );
     }
